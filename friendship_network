@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+	ios_base::sync_with_stdio(false);
+	int N,d;
+	while(cin>>N){
+		bool flag=true;
+		priority_queue<int> q,p;
+		while(N--){
+           cin>>d; q.push(d);
+		}
+		while(!q.empty()){
+			int first=q.top();
+			q.pop();
+			if(q.size()>=first){
+				int tempo;
+				for(int i=0;i<first;i++){
+					tempo=q.top()-1;
+					q.pop();
+					if(tempo!=0) p.push(tempo);
+				}
+				while(!p.empty()){
+					q.push(p.top());
+					p.pop();
+				}
+			}
+			else{
+				flag=false;
+				break;
+			}
+		}
+		if(flag) cout<<1<<endl;
+		else cout<<0<<endl;
+	}
+	return 0;
+}
