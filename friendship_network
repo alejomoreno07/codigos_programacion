@@ -8,7 +8,7 @@ int main(){
 		bool flag=true;
 		priority_queue<int> q,p;
 		while(N--){
-           cin>>d; q.push(d);
+                   cin>>d; q.push(d);
 		}
 		while(!q.empty()){
 			int first=q.top();
