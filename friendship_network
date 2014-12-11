@@ -22,7 +22,7 @@ int main(){
 					if(tempo!=0) p.push_back(tempo);
 				}
 				for(int i=0;i<p.size();i++){
-					q.push(p[i));
+					q.push(p[i]);
 				}
 			}
 			else{
