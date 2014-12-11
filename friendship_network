@@ -6,7 +6,7 @@ int main(){
 	int N,d;
 	while(cin>>N){
 		bool flag=true;
-		priority_queue<int> q,p;
+		priority_queue<int> q;
 		while(N--){
                    cin>>d; q.push(d);
 		}
@@ -15,14 +15,14 @@ int main(){
 			q.pop();
 			if(q.size()>=first){
 				int tempo;
+				vector<int> p;
 				for(int i=0;i<first;i++){
 					tempo=q.top()-1;
 					q.pop();
-					if(tempo!=0) p.push(tempo);
+					if(tempo!=0) p.push_back(tempo);
 				}
-				while(!p.empty()){
-					q.push(p.top());
-					p.pop();
+				for(int i=0;i<p.size();i++){
+					q.push(p[i));
 				}
 			}
 			else{
