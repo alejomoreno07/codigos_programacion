@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int t,x;
+vector<int> s;
+int d[100100];
+
+void start(){
+	s.clear();
+	for(int i=0;i<t;i++){
+		cin>>x; s.push_back(x);
+		d[i]=0;
+	} 
+	int prev,ini,curr;
+	prev=0; ini=0;
+	queue<int> q; q.push(ini);
+	int m=-1;
+	while(q.size()){
+		int j=q.front(); q.pop();
+		int inicio=j; int prev=inicio;
+		//cout<<j<<" ";
+		int times=0;
+		
+	//cout<<"------"<<endl;
+		for(int i=j+1;i<s.size();i++){
+			curr=i;
+		//	cout<<":"<<prev<<" "<<curr<<" "<<times<<endl;
+			if(s[prev]<=s[curr]) prev=curr;
+			else{
+				times++;
+				if(times==2){
+					times=0;
+					if(d[prev]==0) q.push(prev);
+					d[prev]++;
+					if(d[curr]==0) q.push(curr);
+					d[curr]++;
+				//	cout<<inicio<<" "<<prev<<endl;
+					m=max(m,prev-inicio+1);
+					break;
+				}
+				
+				if(times==1){
+					//cout<<prev<<" * "<<curr<<endl;
+					if(d[prev]==0) q.push(prev);
+					if(d[curr]==0) q.push(curr);
+					d[prev]++; d[curr]++;
+				}
+				prev=curr;
+			}
+			if(i==s.size()-1){
+		 		//cout<<inicio<<" "<<prev<<endl;
+				m=max(m,prev-inicio+1);
+			}
+		}
+	}
+	//cout<<"------"<<endl;
+	cout<<max(m,1)<<endl;
+}	
+
+int main(){
+	ios_base::sync_with_stdio(false); cin.tie(NULL);
+	while(cin>>t){
+		start();
+	}
+
+	return 0;
+}
